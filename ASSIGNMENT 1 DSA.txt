@@ -1,0 +1,327 @@
+ASSIGNMENT 1 DSA
+
+1. palindrome: a) reverse the no. and compare it with the original no.
+		time complexity:O(log n)
+		space complexity:O(1)
+
+		b) we convert the no. in string format and use one pointer to point at start
+		   and another to point at end and iterate both and compare.
+		time complexity:O(log n), where n is the input number. 
+				This is because we need to iterate over each digit of the input number, 				and the number of digits in the number is proportional to its logarithm 				base 10.
+		space complexity:O(1), as we only use a constant amount of additional memory to store a 				few variables.
+
+2. 
+
+step1:As the array is already sorted, start traversing the array from the back using a for loop and check 	whether the element is present or not.
+step2:If the target element is present, break out of the loop and print the resulting index.
+step3:If the target element is not present inside the array, then print -1.
+
+my_array = [1, 3, 5, 7, 3, 8, 3, 10]
+search_key = 3
+result = linear_search_last_occurrence(my_array, search_key)
+
+if result != -1:
+    print(f"The last occurrence of {search_key} is at index {result}.")
+else:
+    print(f"{search_key} is not present in the array.")
+
+3.
+package com.sunbeam;
+
+import java.util.Scanner;
+
+public class LinearSearch {
+
+	
+	    
+	    public static int linearSearch(int[] arr, int key) {
+	        int comparisons = 0;
+	        for (int i = 0; i < arr.length; i++) {
+	            comparisons++;
+	            if (arr[i] == key) {
+	                return comparisons;
+	            }
+	        }
+	        return comparisons; // If key is not found
+	    }
+
+	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+
+	        System.out.print("Enter the size of the array: ");
+	        int size = scanner.nextInt();
+
+	        int[] myArray = new int[size];
+
+	        System.out.println("Enter the elements of the array:");
+	        for (int i = 0; i < size; i++) {
+	            myArray[i] = scanner.nextInt();
+	        }
+
+	        System.out.print("Enter the key to search: ");
+	        int searchKey = scanner.nextInt();
+
+	        int comparisons = linearSearch(myArray, searchKey);
+
+	        if (comparisons < myArray.length) {
+	            System.out.println("The key " + searchKey + " is found in the array.");
+	            System.out.println("Number of comparisons: " + comparisons);
+	        } else {
+	            System.out.println("The key " + searchKey + " is not present in the array.");
+	            System.out.println("Number of comparisons: " + comparisons);
+	        }
+	    }
+	}
+
+binary search comparison count:
+
+package com.sunbeam;
+
+import java.util.Scanner;
+import java.util.Arrays;
+public class BinarySearch {
+
+	
+
+
+	    public static int binarySearch(int[] arr, int key) {
+	        int comparisons = 0;
+	        int low = 0;
+	        int high = arr.length - 1;
+
+	        while (low <= high) {
+	            int mid = (low + high) / 2;
+	            comparisons++;
+
+	            if (arr[mid] == key) {
+	                return comparisons;
+	            } else if (arr[mid] < key) {
+	                low = mid + 1;
+	            } else {
+	                high = mid - 1;
+	            }
+	        }
+
+	        return comparisons; // If key is not found
+	    }
+
+	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+
+	        System.out.print("Enter the size of the array: ");
+	        int size = scanner.nextInt();
+
+	        int[] mySortedArray = new int[size];
+
+	        System.out.println("Enter the sorted elements of the array:");
+	        for (int i = 0; i < size; i++) {
+	            mySortedArray[i] = scanner.nextInt();
+	        }
+
+	        System.out.print("Enter the key to search: ");
+	        int searchKey = scanner.nextInt();
+
+	        int comparisons = binarySearch(mySortedArray, searchKey);
+
+	        if (comparisons <= mySortedArray.length) {
+	            System.out.println("The key " + searchKey + " is found in the array.");
+	            System.out.println("Number of comparisons: " + comparisons);
+	        } else {
+	            System.out.println("The key " + searchKey + " is not present in the array.");
+	            System.out.println("Number of comparisons: " + comparisons);
+	        }
+	    }
+	}
+
+5.
+
+import java.util.Scanner;
+
+public class DescendingBinarySearch {
+
+    public static int binarySearchDescending(int[] arr, int key) {
+        int low = 0;
+        int high = arr.length - 1;
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+
+            if (arr[mid] == key) {
+                return mid;
+            } else if (arr[mid] < key) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+
+        return -1; // If key is not found
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the size of the array: ");
+        int size = scanner.nextInt();
+
+        int[] myDescendingArray = new int[size];
+
+        System.out.println("Enter the descending sorted elements of the array:");
+        for (int i = 0; i < size; i++) {
+            myDescendingArray[i] = scanner.nextInt();
+        }
+
+        System.out.print("Enter the key to search: ");
+        int searchKey = scanner.nextInt();
+
+        int resultIndex = binarySearchDescending(myDescendingArray, searchKey);
+
+        if (resultIndex != -1) {
+            System.out.println("The key " + searchKey + " is found at index " + resultIndex + ".");
+        } else {
+            System.out.println("The key " + searchKey + " is not present in the array.");
+        }
+    }
+}
+
+
+6.
+
+import java.util.Scanner;
+
+public class LinearSearchNthOccurrence {
+
+    public static int findNthOccurrence(int[] arr, int key, int n) {
+        int occurrenceCount = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == key) {
+                occurrenceCount++;
+                if (occurrenceCount == n) {
+                    return i;  // Return the index of the nth occurrence
+                }
+            }
+        }
+
+        return -1; // If nth occurrence is not found
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the size of the array: ");
+        int size = scanner.nextInt();
+
+        int[] myArray = new int[size];
+
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < size; i++) {
+            myArray[i] = scanner.nextInt();
+        }
+
+        System.out.print("Enter the key to search: ");
+        int searchKey = scanner.nextInt();
+
+        System.out.print("Enter the occurrence number (n): ");
+        int n = scanner.nextInt();
+
+        int resultIndex = findNthOccurrence(myArray, searchKey, n);
+
+        if (resultIndex != -1) {
+            System.out.println("The " + n + "th occurrence of " + searchKey + " is found at index " + resultIndex + ".");
+        } else {
+            System.out.println("The " + n + "th occurrence of " + searchKey + " is not present in the array.");
+        }
+    }
+}
+
+7.
+
+package com.sunbeam;
+import java.util.HashMap;
+public class seventh {
+
+	
+
+	
+
+	    public static int find(int[] arr) {
+	        HashMap<Integer, Integer> frequencyMap = new HashMap<>();
+
+	       
+	        for (int num : arr) {
+	            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+	        }
+
+	        
+	        for (int num : arr) {
+	            if (frequencyMap.get(num) == 1) {
+	                return num;
+	            }
+	        }
+
+	        
+	        return -1;
+	    }
+
+	    public static void main(String[] args) {
+	        int[] inputArray = {1, 2, 3, -1, 2, 1, 0, 4, -1, 7, 8};
+
+	        int result = find(inputArray);
+
+	        if (result != -1) {
+	            System.out.println("The first non-repeating element is: " + result);
+	        } else {
+	            System.out.println("No non-repeating element found in the array.");
+	        }
+	    }
+	}
+
+}
+
+
+8.
+
+package com.sunbeam;
+
+import java.util.Arrays;
+
+public class Ninth {
+
+
+	    public static int Sort(int[] arr) {
+	        int comparisons = 0;
+
+	        for (int i = 0; i < arr.length - 1; i++) {
+	            int minIndex = i;
+
+	            for (int j = i + 1; j < arr.length; j++) {
+	                comparisons++; 
+	                if (arr[j] < arr[minIndex]) {
+	                    minIndex = j;
+	                }
+	            }
+
+	         
+	            int temp = arr[minIndex];
+	            arr[minIndex] = arr[i];
+	            arr[i] = temp;
+	        }
+
+	        return comparisons;
+	    }
+
+	    public static void main(String[] args) {
+	        int[] myArray = {64, 25, 12, 22, 11};
+	        
+	        System.out.println("Original array: " + Arrays.toString(myArray));
+
+	        int comparisons = Sort(myArray);
+
+	        System.out.println("Sorted array: " + Arrays.toString(myArray));
+	        System.out.println("Number of comparisons: " + comparisons);
+	    }
+	}
+
+
+
