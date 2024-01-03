@@ -1,0 +1,183 @@
+1.
+
+package day2;
+
+import java.util.Arrays;
+
+public class insertion {
+
+	
+	public static int insert(int arr[], int N)
+	{
+		int times=0;
+		for(int i=1; i<N ; i++) {
+			
+			int temp =arr[i];
+			int j;
+			for(j=i-1; j>=0 && arr[j] > temp ; j--) {
+				arr[j+1] = arr[j];
+				
+			}
+			times++;
+			System.out.println("ith loop"+times);
+			arr[j+1]=temp;
+			
+		}
+		return times;
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[]= {55,44,22,66,11,33};
+		
+		
+		System.out.print("array before sort : " + Arrays.toString(arr));
+		int times=insert(arr, arr.length);
+		System.out.print("array after sort : " + Arrays.toString(arr));
+		
+		System.out.print("comparisons done : " + times);
+		
+	}
+
+}
+
+2.
+
+package day2;
+
+import java.util.Arrays;
+
+public class ans1 {
+
+	
+		public static int insert(int arr[], int N)
+		{
+			int times=0;
+			for(int i=1; i<N ; i++) {
+				
+				int temp =arr[i];
+				int j;
+				for(j=i-1; j>=0 && arr[j] < temp ; j--) {
+					arr[j+1] = arr[j];
+					
+				}
+				times++;
+				System.out.println("ith loop"+times);
+				arr[j+1]=temp;
+				
+			}
+			return times;
+		}
+		public static void main(String[] args) {
+			// TODO Auto-generated method stub
+			int arr[]= {55,44,22,66,11,33};
+			
+			
+			System.out.print("array before sort : " + Arrays.toString(arr));
+			int times=insert(arr, arr.length);
+			System.out.print("array after sort : " + Arrays.toString(arr));
+			
+			System.out.print("comparisons done : " + times);
+			
+		}
+
+	}
+
+3.
+
+
+package day2;
+
+import java.util.Arrays;
+
+public class employees {
+
+	public static int insert(int arr[], int N)
+	{
+		int times=0;
+		for(int i=1; i<N ; i++) {
+			
+			int temp =arr[i];
+			int j;
+			for(j=i-1; j>=0 && arr[j] > temp ; j--) {
+				arr[j+1] = arr[j];
+				
+			}
+			times++;
+			System.out.println("ith loop"+times);
+			arr[j+1]=temp;
+			
+		}
+		return times;
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[]= {45000,44000,22000,60006,10001,33000};
+		
+		
+		System.out.print("salaries of employees before sort : " + Arrays.toString(arr));
+		int times=insert(arr, arr.length);
+		System.out.print(" after sorting salaries : " + Arrays.toString(arr));
+		
+		System.out.print("comparisons done : " + times);
+		
+	}
+
+}
+
+4.
+
+package day2stack;
+import java.util.Stack;
+
+public class DescendingStack {
+    public static void main(String[] args) {
+        DescendingStack descendingStack = new DescendingStack();
+
+        descendingStack.push(5);
+        descendingStack.push(3);
+        descendingStack.push(7);
+        descendingStack.push(1);
+
+        System.out.println("Original Stack:");
+        descendingStack.printStack();
+
+        System.out.println("\nAfter sorting in descending order:");
+        descendingStack.sortDescending();
+        descendingStack.printStack();
+    }
+
+    private Stack<Integer> stack;
+
+    public DescendingStack() {
+        stack = new Stack<>();
+    }
+
+    public void push(int value) {
+        stack.push(value);
+    }
+
+    public void sortDescending() {
+        Stack<Integer> tempStack = new Stack<>();
+
+        while (!stack.isEmpty()) {
+            int current = stack.pop();
+
+            while (!tempStack.isEmpty() && tempStack.peek() < current) {
+                stack.push(tempStack.pop());
+            }
+
+            tempStack.push(current);
+        }
+
+        stack = tempStack;
+    }
+
+    public void printStack() {
+        System.out.println(stack);
+    }
+}
+
+
+5.
+
+
