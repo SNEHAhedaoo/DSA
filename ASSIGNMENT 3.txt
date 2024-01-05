@@ -1,0 +1,273 @@
+1.
+
+package day2stack;
+import java.util.Stack;
+public class MaxInStack {
+
+	    public static void main(String[] args) {
+	        MaxStack maxStack = new MaxStack();
+
+	        maxStack.push(3);
+	        maxStack.push(5);
+	        maxStack.push(2);
+	        maxStack.push(7);
+	        maxStack.push(1);
+
+	        System.out.println("Maximum value in the stack: " + maxStack.getMax());
+	    }
+	}
+
+	class MaxStack {
+	    private Stack<Integer> stack;
+	    private Stack<Integer> maxStack;
+
+	    public MaxStack() {
+	        stack = new Stack<>();
+	        maxStack = new Stack<>();
+	    }
+
+	    public void push(int value) {
+	        stack.push(value);
+
+	        if (maxStack.isEmpty() || value >= maxStack.peek()) {
+	            maxStack.push(value);
+	        }
+	    }
+
+	    public int pop() {
+	        if (stack.isEmpty()) {
+	            throw new IllegalStateException("Stack is empty");
+	        }
+
+	        int popped = stack.pop();
+
+	        if (popped == maxStack.peek()) {
+	            maxStack.pop();
+	        }
+
+	        return popped;
+	    }
+
+	    public int getMax() {
+	        if (maxStack.isEmpty()) {
+	            throw new IllegalStateException("Stack is empty");
+	        }
+
+	        return maxStack.peek();
+	    }
+	}
+
+
+2.
+
+package day2stack;
+
+import java.util.Stack;
+
+public class ans2 {
+	
+	public static void main(String[] args) {
+		int[] original = {1,4,5,2,3};
+		
+		System.out.println("original array:");
+		printArray(original);
+		
+		int[] reversed = reverse(original);
+		
+		System.out.println("\n reversed array:");
+		printArray(reversed);
+	}
+
+	private static int[] reverse(int[] array) {
+		Stack<Integer> stack = new Stack<>();
+		
+		for (int value:array) {
+			stack.push(value);
+		}
+		
+		int[] reversed = new int[array.length];
+		int index=0;
+		while(!stack.isEmpty()) {
+			reversed[index++]=stack.pop();
+		}
+		// TODO Auto-generated method stub
+		return reversed;
+	}
+
+	private static void printArray(int[] array) {
+		// TODO Auto-generated method stub
+		
+		for (int value:array) {
+			System.out.print(value + " ");
+			
+		}
+		System.out.println();
+		
+	}
+
+}
+
+
+3.
+
+package linear;
+
+	class LinearQueue {
+	    private int maxSize;
+	    private int[] queueArray;
+	    private int front;
+	    private int rear;
+
+	    public LinearQueue(int size) {
+	        maxSize = size;
+	        queueArray = new int[maxSize];
+	        front = 0;
+	        rear = 0;
+	    }
+
+	    public void enqueue(int data) {
+	        if (isFull()) {
+	            System.out.println("Queue is full. Cannot enqueue " + data);
+	        } else {
+	            queueArray[rear] = data;
+	            rear = (rear + 1) % maxSize;
+	            System.out.println(data + " enqueued to the queue");
+	        }
+	    }
+
+	    public void dequeue() {
+	        if (isEmpty()) {
+	            System.out.println("Queue is empty. Cannot dequeue.");
+	        } else {
+	            int data = queueArray[front];
+	            front = (front + 1) % maxSize;
+	            System.out.println(data + " dequeued from the queue");
+	        }
+	    }
+
+	    public boolean isEmpty() {
+	        return front == rear;
+	    }
+
+	    public boolean isFull() {
+	        return (rear + 1) % maxSize == front;
+	    }
+	}
+
+	public class ans3 {
+	    public static void main(String[] args) {
+	        LinearQueue queue = new LinearQueue(5);
+
+	        queue.enqueue(1);
+	        queue.enqueue(2);
+	        queue.enqueue(3);
+	        queue.enqueue(4);
+
+	        queue.dequeue();
+	        queue.dequeue();
+
+	        queue.enqueue(5);
+	        queue.enqueue(6);
+
+	        queue.dequeue();
+	        queue.dequeue();
+	        queue.dequeue();
+
+	        queue.enqueue(7);
+	    }
+	}
+
+
+4.
+
+package linear;
+
+		class CircularQueue {
+		    private int maxSize;
+		    private int[] queueArray;
+		    private int front;
+		    private int rear;
+		    private int itemCount;
+
+		    public CircularQueue(int size) {
+		        maxSize = size;
+		        queueArray = new int[maxSize];
+		        front = 0;
+		        rear = -1;
+		        itemCount = 0;
+		    }
+
+		    public void enqueue(int data) {
+		        if (!isFull()) {
+		            rear = (rear + 1) % maxSize;
+		            queueArray[rear] = data;
+		            itemCount++;
+		            System.out.println(data + " enqueued to the queue");
+		        } else {
+		            System.out.println("Queue is full. Cannot enqueue " + data);
+		        }
+		    }
+
+		    public void dequeue() {
+		        if (!isEmpty()) {
+		            int data = queueArray[front];
+		            front = (front + 1) % maxSize;
+		            itemCount--;
+		            System.out.println(data + " dequeued from the queue");
+		        } else {
+		            System.out.println("Queue is empty. Cannot dequeue.");
+		        }
+		    }
+
+		    public boolean isEmpty() {
+		        return itemCount == 0;
+		    }
+
+		    public boolean isFull() {
+		        return itemCount == maxSize;
+		    }
+		}
+
+		public class ans4 {
+		    public static void main(String[] args) {
+		        CircularQueue queue = new CircularQueue(5);
+
+		        queue.enqueue(1);
+		        queue.enqueue(2);
+		        queue.enqueue(3);
+		        queue.enqueue(4);
+
+		        queue.dequeue();
+		        queue.dequeue();
+
+		        queue.enqueue(5);
+		        queue.enqueue(6);
+
+		        queue.dequeue();
+		        queue.dequeue();
+		        queue.dequeue();
+
+		        queue.enqueue(7);
+		    }
+		}
+
+		
+		
+	
+
+
+5.
+i)
+To evaluate a postfix expression with two-digit operands, you can use a stack data structure and follow these steps:
+
+Scan the expression from left to right.
+If the current element is an operand (a two-digit number), push it onto the stack.
+If the current element is an operator (+, -, *, /), pop the top two elements from the stack, apply the operator to them, and push the result back onto the stack.
+Repeat steps 2 and 3 until the entire expression has been scanned.
+The final result will be the top element on the stack.
+
+
+ii) same for prefix expression
+if two digits operand push onto stack
+if current eleemt is operator, pop the two elements apply the operator and push the result back
+repaeat above steps untill end.    go rihjt to left
