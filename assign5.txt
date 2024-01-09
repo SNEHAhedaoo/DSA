@@ -1,0 +1,456 @@
+1.
+
+class TreeNode {
+    int val;
+    TreeNode left, right;
+
+    public TreeNode(int val) {
+        this.val = val;
+        this.left = this.right = null;
+    }
+}
+
+public class BST {
+    private TreeNode root;
+
+    public BST() {
+        this.root = null;
+    }
+
+    public void addNode(int val) {
+        root = addNodeRecursive(root, val);
+    }
+
+    private TreeNode addNodeRecursive(TreeNode root, int val) {
+        // Base case: If the tree is empty, create a new node
+        if (root == null) {
+            return new TreeNode(val);
+        }
+
+        // Recursive cases: Traverse the tree to find the appropriate position
+        if (val < root.val) {
+            root.left = addNodeRecursive(root.left, val);
+        } else if (val > root.val) {
+            root.right = addNodeRecursive(root.right, val);
+        }
+
+       
+        return root;
+    }
+
+    
+    public static void main(String[] args) {
+        BST bst = new BST();
+
+        // Adding nodes to the BST
+        bst.addNode(5);
+        bst.addNode(3);
+        bst.addNode(7);
+        bst.addNode(2);
+        bst.addNode(4);
+
+        
+    }
+}
+
+2.
+
+package BST;
+/*
+class TreeNode {
+    int val;
+    TreeNode left, right;
+
+    public TreeNode(int val) {
+        this.val = val;
+        this.left = this.right = null;
+    }
+}*/
+
+public class BSTSearch {
+
+	 private TreeNode root;
+
+	    public BSTSearch() {
+	        this.root = null;
+	    }
+
+	    public boolean search(int val) {
+	        return searchRecursive(root, val);
+	    }
+
+	    private boolean searchRecursive(TreeNode root, int val) {
+	        // Base cases: If the tree is empty or the value is found
+	        if (root == null) {
+	            return false;
+	        }
+
+	        if (val == root.val) {
+	            return true;
+	        }
+
+	        // Recursive cases: Traverse the tree based on the BST property
+	        if (val < root.val) {
+	            return searchRecursive(root.left, val);
+	        } else {
+	            return searchRecursive(root.right, val);
+	        }
+	    }
+	    public void addNode(int val) {
+	        root = addNodeRecursive(root, val);
+	    }
+
+	    private TreeNode addNodeRecursive(TreeNode root, int val) {
+	        // Base case: If the tree is empty, create a new node
+	        if (root == null) {
+	            return new TreeNode(val);
+	        }
+
+	        // Recursive cases: Traverse the tree to find the appropriate position
+	        if (val < root.val) {
+	            root.left = addNodeRecursive(root.left, val);
+	        } else if (val > root.val) {
+	            root.right = addNodeRecursive(root.right, val);
+	        }
+
+	        
+	        return root;
+	    }
+	    
+	    public static void main(String[] args) {
+	        BSTSearch bst = new BSTSearch();
+
+	        
+	        bst.addNode(5);
+	        bst.addNode(3);
+	        bst.addNode(7);
+	        bst.addNode(2);
+	        bst.addNode(4);
+	        System.out.println(bst.search(4)); 
+	        System.out.println(bst.search(6)); 
+	    }
+}
+
+3.
+
+package BST;
+
+
+class TreeNode {
+    int val;
+    TreeNode left, right;
+
+    public TreeNode(int val) {
+        this.val = val;
+        this.left = this.right = null;
+    }
+}
+public class BST {
+
+	  private TreeNode root;
+
+	    public BST() {
+	        this.root = null;
+	    }
+
+	    public void addNode(int val) {
+	        root = addNodeRecursive(root, val);
+	    }
+	    
+	    public int countNodes() {
+	    	return countNodesRecursive(root);
+	    }
+
+	    private int countNodesRecursive(TreeNode root) {
+	    	//base case: if trre is empty
+	    	
+	    	if(root==null) {return 0;}
+	    	
+	    	if(root.left==null && root.right==null) {
+	    		return 1;
+	    	}
+	    	
+	    	int leftLeaves=countNodesRecursive(root.left);
+	    	int rightLeaves=countNodesRecursive(root.right);
+	    	
+	    	return leftLeaves + rightLeaves;
+	    }
+	    
+	    
+	    /////
+	    private TreeNode addNodeRecursive(TreeNode root, int val) {
+	        // Base case: If the tree is empty, create a new node
+	        if (root == null) {
+	            return new TreeNode(val);
+	        }
+
+	        // Recursive cases: Traverse the tree to find the appropriate position
+	        if (val < root.val) {
+	            root.left = addNodeRecursive(root.left, val);
+	        } else if (val > root.val) {
+	            root.right = addNodeRecursive(root.right, val);
+	        }
+
+	        // If the value is already present in the tree, do nothing
+
+	        return root;
+	    }
+
+	    // Other BST-related methods can be added here
+
+	    public static void main(String[] args) {
+	        BST bst = new BST();
+
+	        // Adding nodes to the BST
+	        bst.addNode(5);
+	        bst.addNode(3);
+	        bst.addNode(7);
+	        bst.addNode(2);
+	        bst.addNode(4);
+	        bst.addNode(6);
+	       // bst.addNode(8);
+	        // Counting leaf nodes in the BST
+	        int leafNodeCount = bst.countNodes();
+	        System.out.println("Number of leaf nodes: " + leafNodeCount);//output:3
+	    }
+}
+
+
+4.
+
+package BST;
+
+
+class TreeNode {
+    int val;
+    TreeNode left, right;
+
+    public TreeNode(int val) {
+        this.val = val;
+        this.left = this.right = null;
+    }
+}
+public class BST {
+
+	  private TreeNode root;
+
+	    public BST() {
+	        this.root = null;
+	    }
+
+	    public void addNode(int val) {
+	        root = addNodeRecursive(root, val);
+	    }
+	    
+	    public int countNodes() {
+	    	return countNodesRecursive(root);
+	    }
+/*
+	    private int countNodesRecursive(TreeNode root) {
+	    	//base case: if trre is empty
+	    	
+	    	if(root==null) {return 0;}
+	    	
+	    	if(root.left==null && root.right==null) {
+	    		return 1;
+	    	}
+	    	
+	    	int leftLeaves=countNodesRecursive(root.left);
+	    	int rightLeaves=countNodesRecursive(root.right);
+	    	
+	    	return leftLeaves + rightLeaves;
+	    }
+	    
+	    */
+	    
+	    private int countNodesRecursive(TreeNode root) {
+	    	//base case: if trre is empty
+	    	
+	    	if(root==null) {return 0;}
+	    	
+	    	if(root.left==null && root.right==null) {
+	    		return 0;
+	    	}
+	    	
+	    	int leftLeaves=countNodesRecursive(root.left);
+	    	int rightLeaves=countNodesRecursive(root.right);
+	    	
+	    	//return root;
+	    	return leftLeaves + rightLeaves + 1;
+	    }
+	    
+	    /////
+	    private TreeNode addNodeRecursive(TreeNode root, int val) {
+	        // Base case: If the tree is empty, create a new node
+	        if (root == null) {
+	            return new TreeNode(val);
+	        }
+
+	        // Recursive cases: Traverse the tree to find the appropriate position
+	        if (val < root.val) {
+	            root.left = addNodeRecursive(root.left, val);
+	        } else if (val > root.val) {
+	            root.right = addNodeRecursive(root.right, val);
+	        }
+
+	        // If the value is already present in the tree, do nothing
+
+	        return root;
+	    }
+
+	    // Other BST-related methods can be added here
+
+	    public static void main(String[] args) {
+	        BST bst = new BST();
+
+	        // Adding nodes to the BST
+	        bst.addNode(5);
+	        bst.addNode(3);
+	        bst.addNode(7);
+	        bst.addNode(2);
+	        bst.addNode(4);
+	        bst.addNode(6);
+	        bst.addNode(8);
+	        // Counting leaf nodes in the BST
+	        int leafNodeCount = bst.countNodes();
+	        System.out.println("Number of leaf nodes: " + leafNodeCount);
+	    }
+}
+
+5.
+
+package BST;
+
+
+class TreeNode {
+    int val;
+    TreeNode left, right;
+
+    public TreeNode(int val) {
+        this.val = val;
+        this.left = this.right = null;
+    }
+}
+public class BST {
+
+	  private TreeNode root;
+
+	    public BST() {
+	        this.root = null;
+	    }
+
+	    public void addNode(int val) {
+	        root = addNodeRecursive(root, val);
+	    }
+	    /*
+	    public int countNodes() {
+	    	return countNodesRecursive(root);
+	    }*/
+	    
+	    private int depth(int val) {
+	    	return depthRecursive(root,val,0);
+	    }
+	    
+	    private int depthRecursive(TreeNode root,int val, int depth) {
+	    	if(root==null) {
+	    		return -1;
+	    		
+	    	}
+	    	
+	    	if(val==root.val) {
+			return depth;
+	    	}
+	    	
+	    	if(val<root.val) {
+	    		return depthRecursive(root.left, val, depth + 1);
+	    	}else {
+	    		return depthRecursive(root.right, val, depth + 1);
+	    	}
+	    }
+/*
+	    private int countNodesRecursive(TreeNode root) {
+	    	//base case: if trre is empty
+	    	
+	    	if(root==null) {return 0;}
+	    	
+	    	if(root.left==null && root.right==null) {
+	    		return 1;
+	    	}
+	    	
+	    	int leftLeaves=countNodesRecursive(root.left);
+	    	int rightLeaves=countNodesRecursive(root.right);
+	    	
+	    	return leftLeaves + rightLeaves;
+	    }
+	    
+	    */
+	    /*
+	    private int countNodesRecursive(TreeNode root) {
+	    	//base case: if trre is empty
+	    	
+	    	if(root==null) {return 0;}
+	    	
+	    	if(root.left==null && root.right==null) {
+	    		return 0;
+	    	}
+	    	
+	    	int leftLeaves=countNodesRecursive(root.left);
+	    	int rightLeaves=countNodesRecursive(root.right);
+	    	
+	    	//return root;
+	    	return leftLeaves + rightLeaves + 1;
+	    }
+	    */
+	    /////
+	    private TreeNode addNodeRecursive(TreeNode root, int val) {
+	        // Base case: If the tree is empty, create a new node
+	        if (root == null) {
+	            return new TreeNode(val);
+	        }
+
+	        // Recursive cases: Traverse the tree to find the appropriate position
+	        if (val < root.val) {
+	            root.left = addNodeRecursive(root.left, val);
+	        } else if (val > root.val) {
+	            root.right = addNodeRecursive(root.right, val);
+	        }
+
+	        // If the value is already present in the tree, do nothing
+
+	        return root;
+	    }
+
+	    // Other BST-related methods can be added here
+
+	    public static void main(String[] args) {
+	        BST bst = new BST();
+
+	        // Adding nodes to the BST
+	        bst.addNode(5);
+	        bst.addNode(3);
+	        bst.addNode(7);
+	        bst.addNode(2);
+	        bst.addNode(4);
+	        bst.addNode(6);
+	        bst.addNode(8);
+	      
+	       
+	       
+	        // Finding the depth of a node in the BST
+	        int nodeValue = 4;
+	        int nodeDepth = bst.depth(nodeValue);
+
+	        if (nodeDepth != -1) {
+	            System.out.println("Depth of node " + nodeValue + ": " + nodeDepth);
+	        } else {
+	            System.out.println("Node " + nodeValue + " not found in the BST.");
+	        }
+	    }
+}
+
+
+	     5
+	  /	\
+	3	    7
+      /   \	  /   \
+   2        4	 6      8
